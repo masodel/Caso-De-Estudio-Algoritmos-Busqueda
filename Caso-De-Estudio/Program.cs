@@ -30,8 +30,8 @@ namespace Caso_De_Estudio
             do
             {
                 Console.WriteLine("===== MENU PRINCIPAL =====");
-                Console.WriteLine("1. Búsqueda lineal (Solo en branch lineal)");
-                Console.WriteLine("2. Búsqueda binaria (Solo en branch binaria)");
+                Console.WriteLine("1. Buscar por Título");
+                Console.WriteLine("2. Buscar por Autor");
                 Console.WriteLine("3. Libro más reciente y más antiguo");
                 Console.WriteLine("4. Búsqueda por palabra clave en descripción");
                 Console.WriteLine("0. Salir");
@@ -39,7 +39,7 @@ namespace Caso_De_Estudio
 
                 if (!int.TryParse(Console.ReadLine(), out opcion))
                 {
-                    Console.WriteLine("Entrada inválida.");
+                    Console.WriteLine("\nEntrada inválida.\n");
                     continue;
                 }
 
@@ -61,7 +61,7 @@ namespace Caso_De_Estudio
                         Console.WriteLine("Saliendo…");
                         break;
                     default:
-                        Console.WriteLine("Esta opción solo funciona en la rama correspondiente.");
+                        Console.WriteLine("\nSeleccione una opción válida\n");
                         break;
                 }
 
@@ -82,22 +82,36 @@ namespace Caso_De_Estudio
                     antiguo = libro;
             }
 
-            Console.WriteLine($"Libro más reciente: {reciente.Titulo} ({reciente.Anio})");
-            Console.WriteLine($"Libro más antiguo: {antiguo.Titulo} ({antiguo.Anio})");
+            Console.WriteLine($"\nLibro más reciente: {reciente.Titulo} ({reciente.Anio})");
+            Console.WriteLine($"Libro más antiguo: {antiguo.Titulo} ({antiguo.Anio})\n");
         }
 
         static void BuscarCoincidenciaDescripcion()
         {
-            Console.Write("Ingrese palabra clave: ");
-            string palabra = Console.ReadLine().ToLower();
+            Console.Write("\nPalabra clave: ");
+            string palabra = Console.ReadLine().Trim();
+
+            if (string.IsNullOrWhiteSpace(palabra))
+            {
+                Console.WriteLine("\nLa palabra clave no puede estar vacía.\n");
+                return;
+            }
+
+            Console.WriteLine("\nCoincidencias encontradas:");
+            bool encontrado = false;
 
             foreach (var libro in Libros)
             {
                 if (libro.Descripcion.ToLower().Contains(palabra))
                 {
-                    Console.WriteLine($"Coincidencia: {libro.Titulo} - {libro.Descripcion}");
+                    Console.WriteLine($"• {libro.Titulo} — {libro.Descripcion}");
+                    encontrado = true;
                 }
             }
+
+            if (!encontrado) { Console.WriteLine("\nNo hubo coincidencias.\n"); return; }
+
+            Console.WriteLine();
         }
 
         static void BusquedaBinaria()
@@ -120,7 +134,7 @@ namespace Caso_De_Estudio
 
                 if (comparacion == 0)
                 {
-                    Console.WriteLine($"Autor encontrado: {ordenados[medio].Autor} - Libro: {ordenados[medio].Titulo}");
+                    Console.WriteLine($"\nAutor encontrado: {ordenados[medio].Autor} - Libro: {ordenados[medio].Titulo}\n");
                     return;
                 }
                 else if (comparacion < 0)
@@ -133,7 +147,7 @@ namespace Caso_De_Estudio
                 }
             }
 
-            Console.WriteLine("Autor no encontrado.");
+            Console.WriteLine("\nAutor no encontrado.\n");
         }
 
         static void BusquedaLineal()
@@ -145,12 +159,12 @@ namespace Caso_De_Estudio
             {
                 if (libro.Titulo.ToLower() == titulo)
                 {
-                    Console.WriteLine($"Libro encontrado: {libro.Titulo} ({libro.Autor}, {libro.Anio})");
+                    Console.WriteLine($"\nLibro encontrado: {libro.Titulo} ({libro.Autor}, {libro.Anio})\n");
                     return;
                 }
             }
 
-            Console.WriteLine("Libro no encontrado.");
+            Console.WriteLine("\nLibro no encontrado.\n");
         }
     }
 }
