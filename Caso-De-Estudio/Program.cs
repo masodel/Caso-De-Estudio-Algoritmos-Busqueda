@@ -45,6 +45,9 @@ namespace Caso_De_Estudio
 
                 switch (opcion)
                 {
+                    case 2:
+                        BusquedaBinaria();
+                        break;
                     case 3:
                         BuscarRecientes();
                         break;
@@ -71,5 +74,41 @@ namespace Caso_De_Estudio
         {
             // Falta implementar
         }
+
+        // Método para búsqueda binaria de autores
+        static void BusquedaBinaria()
+        {
+            List<Libro> ordenados = new List<Libro>(Libros);
+            ordenados.Sort((a, b) => a.Autor.CompareTo(b.Autor));
+
+            Console.Write("Ingrese el autor a buscar: ");
+            string autorBuscado = Console.ReadLine().ToLower();
+
+            int inicio = 0;
+            int fin = ordenados.Count - 1;
+
+            while (inicio <= fin)
+            {
+                int medio = (inicio + fin) / 2;
+                string actual = ordenados[medio].Autor.ToLower();
+
+                int comparacion = string.Compare(actual, autorBuscado, StringComparison.Ordinal);
+
+                if (comparacion == 0)
+                {
+                    Console.WriteLine($"Autor encontrado: {ordenados[medio].Autor} - Libro: {ordenados[medio].Titulo}");
+                    return;
+                }
+                else if (comparacion < 0)
+                {
+                    inicio = medio + 1;
+                    Console.WriteLine("Autor no encontrado.");
+                }
+
+
+
+            }
+        }
     }
 }
+   
