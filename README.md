@@ -16,8 +16,8 @@ Como programadores en formación, se asignó la tarea de investigar, diseñar e 
 ---
 
 ## Integrantes del equipo
-- [Nombre del estudiante 1]  
-- [Nombre del estudiante 2]  
+- Mauro Engelbert Delgado Saenz  
+- Dylan Andres Mora Castillo
 
 ---
 
@@ -44,6 +44,7 @@ Se realizaron **pull requests** revisados por la pareja y se mantuvo un registro
 ---
 
 ## Anexos
-###Informe del Trabajo: <https://docs.google.com/document/d/1LHpdxZc-Flqd8heYNSuYUiY7X6Se9oJ8JAqRjHXEoV8/edit?usp=sharing>
+Informe del Trabajo: <https://docs.google.com/document/d/1LHpdxZc-Flqd8heYNSuYUiY7X6Se9oJ8JAqRjHXEoV8/edit?usp=sharing>
+
 Este también contiene las investigaciones que hicimos individualmente, así como nuestros pensamientos al final del trabajo.
 
