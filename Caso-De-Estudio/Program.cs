@@ -70,12 +70,34 @@ namespace Caso_De_Estudio
 
         static void BuscarRecientes()
         {
-            // Falta implementar
+            Libro reciente = Libros[0];
+            Libro antiguo = Libros[0];
+
+            foreach (var libro in Libros)
+            {
+                if (libro.Anio > reciente.Anio)
+                    reciente = libro;
+
+                if (libro.Anio < antiguo.Anio)
+                    antiguo = libro;
+            }
+
+            Console.WriteLine($"Libro más reciente: {reciente.Titulo} ({reciente.Anio})");
+            Console.WriteLine($"Libro más antiguo: {antiguo.Titulo} ({antiguo.Anio})");
         }
 
         static void BuscarCoincidenciaDescripcion()
         {
-            // Falta implementar
+            Console.Write("Ingrese palabra clave: ");
+            string palabra = Console.ReadLine().ToLower();
+
+            foreach (var libro in Libros)
+            {
+                if (libro.Descripcion.ToLower().Contains(palabra))
+                {
+                    Console.WriteLine($"Coincidencia: {libro.Titulo} - {libro.Descripcion}");
+                }
+            }
         }
 
         static void BusquedaBinaria()
