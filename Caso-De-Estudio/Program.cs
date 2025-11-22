@@ -45,6 +45,9 @@ namespace Caso_De_Estudio
 
                 switch (opcion)
                 {
+                    case 1:
+                        BusquedaLineal();
+                        break;
                     case 2:
                         BusquedaBinaria();
                         break;
@@ -75,7 +78,6 @@ namespace Caso_De_Estudio
             // Falta implementar
         }
 
-        // Método para búsqueda binaria de autores
         static void BusquedaBinaria()
         {
             List<Libro> ordenados = new List<Libro>(Libros);
@@ -102,12 +104,31 @@ namespace Caso_De_Estudio
                 else if (comparacion < 0)
                 {
                     inicio = medio + 1;
-                    Console.WriteLine("Autor no encontrado.");
                 }
-
-
-
+                else
+                {
+                    fin = medio - 1;
+                }
             }
+
+            Console.WriteLine("Autor no encontrado.");
+        }
+
+        static void BusquedaLineal()
+        {
+            Console.Write("Ingrese el título a buscar: ");
+            string titulo = Console.ReadLine().ToLower();
+
+            foreach (var libro in Libros)
+            {
+                if (libro.Titulo.ToLower() == titulo)
+                {
+                    Console.WriteLine($"Libro encontrado: {libro.Titulo} ({libro.Autor}, {libro.Anio})");
+                    return;
+                }
+            }
+
+            Console.WriteLine("Libro no encontrado.");
         }
     }
 }
