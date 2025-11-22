@@ -45,6 +45,9 @@ namespace Caso_De_Estudio
 
                 switch (opcion)
                 {
+                    case 1:
+                        BusquedaLineal();
+                        break;
                     case 3:
                         BuscarRecientes();
                         break;
@@ -70,6 +73,24 @@ namespace Caso_De_Estudio
         static void BuscarCoincidenciaDescripcion()
         {
             // Falta implementar
+        }
+
+        // Método para búsqueda lineal
+        static void BusquedaLineal()
+        {
+            Console.Write("Ingrese el título a buscar: ");
+            string titulo = Console.ReadLine().ToLower();
+
+            foreach (var libro in Libros)
+            {
+                if (libro.Titulo.ToLower() == titulo)
+                {
+                    Console.WriteLine($"Libro encontrado: {libro.Titulo} ({libro.Autor}, {libro.Anio})");
+                    return;
+                }
+            }
+
+            Console.WriteLine("Libro no encontrado.");
         }
     }
 }
